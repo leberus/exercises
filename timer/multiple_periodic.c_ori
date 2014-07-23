@@ -1,0 +1,71 @@
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/kernel.h>
+#include <linux/timer.h>
+#include <linux/cdev.h>
+#include <linux/fs.h>
+#include <linux/slab.h>
+
+
+static struct mystruct {
+	struct timer_list *mytimmy;
+	int data;
+}*timer_1,*timer_2;
+
+unsigned long addr;	
+unsigned long jiffies_on_load;
+
+static void function_timer( unsigned long data )
+{
+	struct mystruct *my_st = ( struct mystruct * )data;
+	unsigned int delay;
+
+		pr_info( "[Timer] Function timer called! at address 0x%lx\n", data );
+		pr_info( "[Timer] Jiffies on load: %ld, Current jiffies: %ld, Time %d\n", jiffies_on_load, jiffies, my_st->data );
+
+		delay = HZ * my_st->data;
+		pr_info( "Delay: %d\n", delay );
+		mod_timer( my_st->mytimmy, jiffies + delay );
+}
+
+
+static int __init my_init( void )
+{
+	int nr_timers;
+	unsigned int time;
+	struct mystruct *my_st;
+	struct timer_list *tl;
+	
+		
+		for( nr_timers = 0 ; nr_timers < 2 ; nr_timers++ )
+		{
+			time = nr_timers > 0 ? 1 : 64;
+	
+			tl = ( struct timer_list * ) kmalloc( sizeof( struct timer_list ), GFP_KERNEL );
+                	my_st = ( struct mystruct * ) kmalloc( sizeof( struct mystruct ), GFP_KERNEL );
+			init_timer( tl );
+			tl->expires = jiffies + ( HZ * time );
+			tl->function = function_timer;
+			tl->data = addr = ( unsigned long ) my_st;
+			my_st->mytimmy = tl;
+			my_st->data = time;
+			add_timer( tl );
+			jiffies_on_load = jiffies;
+		}
+
+		return 0;
+}
+
+static void __exit my_exit( void )
+{
+	struct mystruct *my_st = ( struct mystruct * )addr;
+	
+		kfree( my_st->mytimmy );
+                kfree( my_st );
+		printk( KERN_INFO "Just exiting..\n" );
+}
+
+module_init( my_init );
+module_exit( my_exit );
+
+

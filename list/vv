@@ -1,0 +1,14 @@
+list_for_each(pos, &mylist.list)
+
+for (pos = (head)->next; pos != (head); pos = pos->next)
+
+
+tmp = list_entry(pos, struct kool_list, list);
+	((type *)((char *)(ptr)-(unsigned long)(&((type *)0)->member)))
+
+( (struct kool_list *)          ( (char *)(pos) - (unsigned long) (& ((struct kool_list *)0)->list) ) )
+
+10000
+
+
+

@@ -1,0 +1,1 @@
+cmd_/home/oscar/d/writing_linux_device/work_tasklets/3/bottom_tasklet.ko := ld -r -m elf_x86_64 -T /home/oscar/kernel/linux-3.15.5/scripts/module-common.lds --build-id  -o /home/oscar/d/writing_linux_device/work_tasklets/3/bottom_tasklet.ko /home/oscar/d/writing_linux_device/work_tasklets/3/bottom_tasklet.o /home/oscar/d/writing_linux_device/work_tasklets/3/bottom_tasklet.mod.o

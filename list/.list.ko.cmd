@@ -1,0 +1,1 @@
+cmd_/home/leber/doku/writing_linux_device/list/list.ko := ld -r -m elf_x86_64 -T /usr/src/linux-headers-3.2.0-4-common/scripts/module-common.lds --build-id  -o /home/leber/doku/writing_linux_device/list/list.ko /home/leber/doku/writing_linux_device/list/list.o /home/leber/doku/writing_linux_device/list/list.mod.o

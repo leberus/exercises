@@ -1,0 +1,6 @@
+1- Only a init function: Module can't be unloaded, it shows an error.
+2- Only a cleanup function: Module doesn't do anything on its startup.
+3- Neither an init nor a cleanup function: Module doesn't do anything on the startup, and then you can't unloaded it, but you can see in lsmod. 
+
+hello2 8217 0 - Live 0xffffffffa0248000 (O)
+hello1 8217 0 [permanent], Live 0xffffffffa0068000 (O)

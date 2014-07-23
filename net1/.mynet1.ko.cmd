@@ -1,0 +1,1 @@
+cmd_/home/oscar/d/writing_linux_device/net1/mynet1.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/oscar/d/writing_linux_device/net1/mynet1.ko /home/oscar/d/writing_linux_device/net1/mynet1.o /home/oscar/d/writing_linux_device/net1/mynet1.mod.o

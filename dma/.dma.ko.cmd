@@ -1,0 +1,1 @@
+cmd_/home/oscar/d/writing_linux_device/dma/dma.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/oscar/d/writing_linux_device/dma/dma.ko /home/oscar/d/writing_linux_device/dma/dma.o /home/oscar/d/writing_linux_device/dma/dma.mod.o
